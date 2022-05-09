@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,8 +66,12 @@ public class LoginController
     }
 
     @RequestMapping("/save-user")
-    public String saveCustomerRegistration(@ModelAttribute("user") User user, Customer customer)
+    public String saveCustomerRegistration(@ModelAttribute("user") User user, @Valid@ModelAttribute("customer") Customer customer, BindingResult bindingResult)
     {
+        if(bindingResult.hasErrors())
+        {
+            return "customer-details";
+        }
         customer.setUserid(user);
         customerService.save(customer);
         return "register_success";

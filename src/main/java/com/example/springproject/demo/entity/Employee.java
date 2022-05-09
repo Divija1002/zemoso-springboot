@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="employee")
@@ -15,19 +16,20 @@ public class Employee
     @Column(name = "empid")
     private int id;
 
-    @NotEmpty
+    @NotEmpty(message = "is required")
     @Column(name = "firstname")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "is required")
     @Column(name = "lastname")
     private String  lastName;
 
-    @NotEmpty
+    @NotEmpty(message = "is required")
+    @Pattern(regexp = "([a-zA-Z0-9_.-]+)@([a-zA-Z0-9]+)([\\.])([a-zA-Z]+)",message = "incorrect email")
     @Column(name = "email")
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "is required")
     @Column(name = "phoneno")
     private String phoneNumber;
 

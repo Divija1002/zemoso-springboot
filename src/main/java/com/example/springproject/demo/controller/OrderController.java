@@ -1,8 +1,6 @@
 package com.example.springproject.demo.controller;
 
-import com.example.springproject.demo.cart.ProductCart;
 import com.example.springproject.demo.dto.CustomerDto;
-import com.example.springproject.demo.dto.OrderDto;
 import com.example.springproject.demo.dto.ProductDto;
 import com.example.springproject.demo.entity.*;
 import com.example.springproject.demo.dto.UserDto;

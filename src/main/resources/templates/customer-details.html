@@ -1,125 +1,109 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="User account registration" />
-  <meta name="author" content="Amir Boroumand" />
-  <link rel="icon" href="favicon.ico" />
 
-  <title>Registration Page</title>
+    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap core CSS -->
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous" />
+    <!-- Reference Bootstrap files -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-  <link th:href="@{css/style.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    .error
+    {
+    color:red;
+    }
+  </style>
+
 </head>
 
-<body class="gray-bg">
+<body>
 
-<div class="middle-box text-center loginscreen animated fadeInDown">
-  <div>
+<div>
+    <div id="loginbox" style="margin-top: 50px;"
+         class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
 
-    <h4>New User Registration</h4>
-    <form autocomplete="off" action="#" th:action="@{/save-user}"
-          th:object="${customer}" method="post" class="m-t" role="form"
-          data-toggle="validator">
+        <div class="panel panel-info">
 
-      <div class="form-group input-group has-feedback">
-        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
+            <div class="panel-heading">
+                <div class="panel-title">Additional Details</div>
+            </div>
 
-        <input type="text" th:field="*{firstName}"
-               placeholder="First Name" class="form-control" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
-      </div>
+            <div style="padding-top: 30px" class="panel-body">
 
-      <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-user"></span>
-          </span>
-        <input type="text" th:field="*{lastName}"
-               placeholder="Last Name" class="form-control" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
-      </div>
+                <form th:action="@{/save-user}" th:object="${customer}" method="post" class="form-horizontal">
 
-      <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
-        <input type="email" th:field="*{email}"
-               placeholder="Email Address" class="form-control"
-               data-error="This email address is invalid" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-      </div>
+                        <input type="text" th:field="*{firstName}"  placeholder="first name" class="form-control">
+                        <p  th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}"></p>
+                    </div>
 
-      <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
-        <input type="text" th:field="*{address}"
-               placeholder="Address" class="form-control"
-               data-error="This address is invalid" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-      </div>
+                        <input type="text" th:field="*{lastName}"  placeholder="last name" class="form-control">
+                        <p  th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}"></p>
+                    </div>
 
-      <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
-        <input type="text" th:field="*{city}"
-               placeholder="City" class="form-control"
-               data-error="This city is invalid" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-      </div>
+                        <input type="text" th:field="*{email}"  placeholder="email" class="form-control">
+                        <p  th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></p>
+                    </div>
 
-      <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
-        <input type="text" th:field="*{state}"
-               placeholder="State" class="form-control"
-               data-error="This state is invalid" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-      </div>
+                        <input type="text" th:field="*{address}"  placeholder="Address" class="form-control">
+                        <p  th:if="${#fields.hasErrors('address')}" th:errorclass="error" th:errors="*{address}"></p>
+                    </div>
 
-      <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-envelope"></span>
-          </span>
-        <input type="text" th:field="*{zip}"
-               placeholder="Zip" class="form-control"
-               data-error="This zip is invalid" required />
-        <span class="glyphicon form-control-feedback"
-              aria-hidden="true"></span>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-      </div>
+                        <input type="text" th:field="*{city}"  placeholder="city" class="form-control">
+                        <p  th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{city}"></p>
+                    </div>
 
-      <button type="submit"
-              class="btn btn-primary block full-width m-b">Register</button>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
-    </form>
+                        <input type="text" th:field="*{state}"  placeholder="state" class="form-control">
+                        <p  th:if="${#fields.hasErrors('state')}" th:errorclass="error" th:errors="*{state}"></p>
+                    </div>
 
-  </div>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                        <input type="text" th:field="*{zip}"  placeholder="zip" class="form-control">
+                        <p  th:if="${#fields.hasErrors('zip')}" th:errorclass="error" th:errors="*{zip}"></p>
+                    </div>
+
+                    <div style="margin-top: 10px" class="form-group">
+                        <div class="col-sm-6 controls">
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 </body>
-
 </html>

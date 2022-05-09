@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -51,8 +53,12 @@ public class EmployeeController
     }
 
     @RequestMapping("/save-employee")
-    public String saveCustomerRegistration(@ModelAttribute("user") User user, Employee employee)
+    public String saveCustomerRegistration(@ModelAttribute("user") User user, @Valid@ModelAttribute("employee") Employee employee, BindingResult bindingResult)
     {
+        if(bindingResult.hasErrors())
+        {
+            return "employee-register";
+        }
         employee.setUserid(user);
         employeeService.save(employee);
         return "redirect:/admin";

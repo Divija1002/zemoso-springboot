@@ -25,7 +25,8 @@ public class Customer
     @Column(name = "last_name")
     private String lastName;
 
-    @NotEmpty
+    @NotEmpty(message = "is required")
+    @Pattern(regexp = "([a-zA-Z0-9_.-]+)@([a-zA-Z0-9]+)([\\.])([a-zA-Z]+)",message = "incorrect email")
     @Column(name = "email")
     private String email;
 
