@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Category Form</title>
+    <style>
+    .error
+    {
+    color:red;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/admin}">Farm Fresh</a>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" />
+        </form>
+    </div>
+</nav>
+<br><br>
+<div class="container">
+    <br>
+    <p class="h4 mb-4"> Save Category</p>
+    <br>
+    <form action="#" th:action="@{/admin/category/save}" th:object="${category}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <label>Name</label>
+        <input type="text" th:field="*{categoryName}" placeholder="Category Name" class="form-control mb-4 col-4">
+        <p  th:if="${#fields.hasErrors('categoryName')}" th:class="${#fields.hasErrors('categoryName')}? error">is required</p>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+        <hr>
+        <a th:href="@{/admin/category/list}">Back to Category List</a>
+    </form>
+</div>
+</body>
+</html>

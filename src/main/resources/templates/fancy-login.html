@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+	
+	<title>Login Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		  crossorigin="anonymous" />
+</head>
+
+<body>
+<center>
+	<div class="container-fluid text-center">
+		<div th:if="${param.error}">
+			<p class="text-danger">invalid username or password</p>
+		</div>
+
+		<div th:if="${param.logout}">
+			<p class="text-warning">You have been logged out.</p>
+		</div>
+		<!-- Login Form -->
+		<form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
+			<div class="border border-secondary p-3 rounded">
+			<!-- User name -->
+			<input type="text" name="username" placeholder="username" class="form-control">
+			<!-- Password -->
+			<input type="password" name="password" placeholder="password" class="form-control">
+			<!-- Login/Submit Button -->
+			<button type="submit" class="btn btn-success">Login</button>
+			<!--
+			manually adding csrf tokens
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            -->
+			</div>
+		</form>
+	</div>
+</center>
+</body>
+</html>

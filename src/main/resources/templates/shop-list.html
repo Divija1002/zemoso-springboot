@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+    <title>Product List</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/user/home}">Farm Fresh</a>
+        </div>
+        <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+        <!--<a class="navbar-brand" th:href="@{/cart/cart-list}">Cart List</a>-->
+        <a class="navbar-brand" th:href="@{/order/cart}">Cart List</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" />
+        </form>
+    </div>
+</nav>
+
+<table style="width: 100%">
+    <tr th:each="tempProduct : ${product}">
+        <div class="card text-center mr-2 mt-2 ml-2 mb-2"
+             style="width: 15rem; display: inline-block">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${tempProduct.name}"></h5>
+                <!--<ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="${tempProduct.weight}" title="Weight(in kgs)" id="weight"></li>
+                    <label for="weight">Weight(in kgs)</label>
+                    <li class="list-group-item" th:text="${tempProduct.price}" title="price" id="price"></li>
+                    <label for="price">Price</label>
+                </ul>-->
+                <!--<label for="weight">Weight(in kgs)</label>-->
+                <!--<li class="list-group-item" th:text="${tempProduct.weight}" title="Weight(in kgs)" id="weight">weight</li>-->
+                <label > Weight(in kgs): </label>
+                <label th:text="${tempProduct.weight}" id="weight"></label>
+                <br>
+                <!--<label for="price">Price(in rupees)</label>-->
+                <!--<li class="list-group-item" th:text="${tempProduct.price}" title="price" id="price"></li>-->
+                <label > Price(in rupees): </label>
+                <label th:text="${tempProduct.price}"></label>
+                <br>
+                <!--<a th:href="@{/cart/add/{id}(id=${tempProduct.id})}" class="card-link">Add</a>-->
+                <a th:href="@{/order/add/{id}(id=${tempProduct.id})}" class="btn btn-info btn-sm">Add</a>
+                <label> qty: </label>
+                <label th:each="tempOrder : ${order}" th:if="${tempProduct.id}==${tempOrder.productId.id}" th:text="${tempOrder.quantity}" ></label>
+            </div>
+        </div>
+    </tr>
+</table>
+</body>
+</html>

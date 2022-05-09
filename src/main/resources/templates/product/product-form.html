@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Product Form</title>
+    <style>
+    .error
+    {
+    color:red;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/admin}">Farm Fresh</a>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" />
+        </form>
+    </div>
+</nav>
+<br><br>
+<div class="container">
+    <br>
+    <p class="h4 mb-4"> Save Product</p>
+    <br>
+    <form action="#" th:action="@{/admin/product/save}" th:object="${product}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <label>Name</label>
+        <input type="text" th:field="*{name}" placeholder="Product Name" class="form-control mb-4 col-4">
+        <p  th:if="${#fields.hasErrors('name')}" th:class="${#fields.hasErrors('name')}? error">is required</p>
+        <label>Weight</label>
+        <input type="text" th:field="*{weight}" placeholder="Product Weight" class="form-control mb-4 col-4">
+        <p  th:if="${#fields.hasErrors('weight')}" th:class="${#fields.hasErrors('weight')}? error">is required</p>
+        <label>Price</label>
+        <input type="text" th:field="*{price}" placeholder="Product Price" class="form-control mb-4 col-4">
+        <p  th:if="${#fields.hasErrors('price')}" th:class="${#fields.hasErrors('price')}? error">is required</p>
+        <!--<label>Category</label>
+        <select th:field="*{categoryId}">
+            <option value="">Select Category</option>
+            <option th:each="tempCategory : ${category}" th:value="${tempCategory.id}" th:text="${tempCategory.categoryName}"></option>
+        </select>-->
+        <label>Category</label>
+        <select th:field="*{category}">
+            <option value="">Select Category</option>
+            <option th:each="tempCategory : ${category}" th:value="${tempCategory.id}" th:text="${tempCategory.categoryName}"></option>
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+        <hr>
+        <a th:href="@{/admin/product/list}">Back to Product List</a>
+    </form>
+</div>
+</body>
+</html>
