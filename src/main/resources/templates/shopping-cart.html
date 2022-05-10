@@ -43,8 +43,8 @@
             <td th:text="${tempProduct.price}"></td>
             <td th:text="${tempOrder.quantity}"></td>
             <td>
-                <a th:href="@{/order/update/{id}(id=${tempProduct.id})}" class="btn btn-info btn-sm" >Add</a>
-                <a th:href="@{/order/update/remove/{id}(id=${tempProduct.id})}" class="btn btn-info btn-sm" >Remove</a>
+                <a th:href="@{/order/update/{id}(id=${tempProduct.id})}" class="btn btn-info btn-sm" >+</a>
+                <a th:href="@{/order/update/remove/{id}(id=${tempProduct.id})}" class="btn btn-info btn-sm" >-</a>
             <a th:href="@{/order/delete/{id}(id=${tempProduct.id})}" class="btn btn-danger btn-sm" onclick="if(!(confirm('Are you sure you want to delete this product?'))) return false">Delete</a>
             </td>
         </tr>

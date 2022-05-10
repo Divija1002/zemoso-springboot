@@ -2,6 +2,7 @@ package com.example.springproject.demo.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="category")
 @Data
+@NoArgsConstructor
 public class Category
 {
     @Id
@@ -22,10 +24,6 @@ public class Category
     @Size(min=1,message = "is required")
     private String categoryName;
 
-    public Category()
-    {
-
-    }
 
     public Category(String categoryName)
     {

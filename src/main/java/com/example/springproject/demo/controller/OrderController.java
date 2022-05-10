@@ -49,6 +49,7 @@ public class OrderController
         {
             totalCost=totalCost+((tempOrder.getProductId().getPrice())*(tempOrder.getQuantity()));
         }
+        totalCost=Math.round(totalCost*100)/100;
         model.addAttribute("cart",orderList);
         model.addAttribute("total",totalCost);
         return "shopping-cart";

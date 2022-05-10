@@ -20,17 +20,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 {
-/*
-    @Autowired
-    private SuccessHandler successHandler;
-
-    @Autowired
-    private DataSource dataSource;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);
-    }*/
 
     @Bean
     public UserDetailsService userDetailsService() {

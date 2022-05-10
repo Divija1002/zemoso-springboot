@@ -39,7 +39,7 @@ public class EmployeeController
     }
 
     @PostMapping("/process-register")
-    public String processRegister(User user, Model model) {
+    public String processRegister(@Valid@ModelAttribute("user") User user, Model model) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);

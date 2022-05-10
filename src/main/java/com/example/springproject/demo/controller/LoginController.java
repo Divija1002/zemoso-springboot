@@ -53,7 +53,7 @@ public class LoginController
     }
 
     @PostMapping("/process_register")
-    public String processRegister(User user, Model model) {
+    public String processRegister(@Valid@ModelAttribute("user") User user, Model model) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
