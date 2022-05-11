@@ -3,7 +3,6 @@ package com.example.springproject.demo.config;
 import com.example.springproject.demo.handler.SuccessHandler;
 import com.example.springproject.demo.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,6 +20,7 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 {
 
+    @Override
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetailsService customUserDetailsService = new CustomUserDetailsService();

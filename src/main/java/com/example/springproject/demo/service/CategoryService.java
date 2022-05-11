@@ -7,16 +7,16 @@ import java.util.List;
 
 public interface CategoryService
 {
-    public List<CategoryDto> findAll();
+    List<CategoryDto> findAll();
 
-    public CategoryDto findById(int theId);
+    CategoryDto findById(int theId);
 
-    public void save(Category theCategory);
+    void save(Category theCategory);
 
-    public void deleteById(int theId);
+    void deleteById(int theId);
 
-    public CategoryDto entityToDto(Category category);
+    CategoryDto entityToDto(Category category);
 
-    public Category dtoToEntity(CategoryDto categoryDto);
+    Category dtoToEntity(CategoryDto categoryDto);
 
 }

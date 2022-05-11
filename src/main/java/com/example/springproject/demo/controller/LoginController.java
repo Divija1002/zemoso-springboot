@@ -34,8 +34,6 @@ public class LoginController
     @GetMapping("/login")
     public String showMyLoginPage()
     {
-        //return "plain-login";
-        //return "fancy-login";
         return "fancy-login-new";
     }
 

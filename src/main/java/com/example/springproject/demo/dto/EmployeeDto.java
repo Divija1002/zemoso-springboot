@@ -1,10 +1,6 @@
 package com.example.springproject.demo.dto;
 
-import com.example.springproject.demo.entity.User;
 import lombok.Data;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Data
 public class EmployeeDto

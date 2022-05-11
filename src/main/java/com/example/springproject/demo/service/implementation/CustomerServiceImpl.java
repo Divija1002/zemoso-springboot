@@ -50,8 +50,7 @@ public class CustomerServiceImpl implements CustomerService
         {
             throw new RuntimeException("customer not found");
         }
-        CustomerDto customerDto=entityToDto(customer);
-        return customerDto;
+        return entityToDto(customer);
     }
 
     @Override
@@ -67,8 +66,7 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public CustomerDto findCustomerByUserid(int id) {
         Customer customer=customerRepository.findByUserid(id);
-        CustomerDto customerDto=entityToDto(customer);
-        return customerDto;
+        return entityToDto(customer);
     }
 
     @Override
@@ -88,8 +86,7 @@ public class CustomerServiceImpl implements CustomerService
 
     @Override
     public Customer dtoToEntity(CustomerDto customerDto) {
-        Customer customer=modelMapper.map(customerDto,Customer.class);
-        return customer;
+        return modelMapper.map(customerDto,Customer.class);
     }
 
 }

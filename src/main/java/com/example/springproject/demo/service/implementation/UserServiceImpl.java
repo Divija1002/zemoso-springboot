@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService
@@ -52,8 +51,7 @@ public class UserServiceImpl implements UserService
         {
             throw  new RuntimeException("user not found id: "+theId);
         }
-        UserDto userDto=entityToDto(user);
-        return userDto;
+        return entityToDto(user);
     }
 
     @Override
@@ -75,14 +73,12 @@ public class UserServiceImpl implements UserService
     @Override
     public UserDto entityToDto(User user)
     {
-        UserDto userDto=modelMapper.map(user,UserDto.class);
-        return userDto;
+        return modelMapper.map(user,UserDto.class);
     }
 
     @Override
     public User dtoToEntity(UserDto userDto)
     {
-        User user=modelMapper.map(userDto,User.class);
-        return user;
+        return modelMapper.map(userDto,User.class);
     }
 }

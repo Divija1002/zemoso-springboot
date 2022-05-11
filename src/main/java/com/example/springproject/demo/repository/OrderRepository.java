@@ -11,7 +11,7 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order,Integer>
 {
     @Query(value = "select * from orders o where o.cust_id = ?1",nativeQuery = true)
-    public List<Order> findByCustomerId(int cid);
+    List<Order> findByCustomerId(int cid);
 
-    public Order findByCustomerIdAndProductId(Customer customer, Product product);
+    Order findByCustomerIdAndProductId(Customer customer, Product product);
 }

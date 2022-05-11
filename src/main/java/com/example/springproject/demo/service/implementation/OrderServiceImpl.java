@@ -5,9 +5,7 @@ import com.example.springproject.demo.entity.Customer;
 import com.example.springproject.demo.entity.Order;
 import com.example.springproject.demo.entity.Product;
 import com.example.springproject.demo.repository.OrderRepository;
-import com.example.springproject.demo.repository.ProductRepository;
 import com.example.springproject.demo.service.OrderService;
-import org.aspectj.weaver.ast.Or;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +52,7 @@ public class OrderServiceImpl implements OrderService
         {
             throw new RuntimeException("order not found");
         }
-        OrderDto orderDto=entityToDto(order);
-        return orderDto;
+        return entityToDto(order);
     }
 
     @Override
@@ -124,7 +121,6 @@ public class OrderServiceImpl implements OrderService
 
     @Override
     public Order dtoToEntity(OrderDto orderDto) {
-        Order order=modelMapper.map(orderDto,Order.class);
-        return order;
+        return modelMapper.map(orderDto,Order.class);
     }
 }

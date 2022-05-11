@@ -9,23 +9,23 @@ import java.util.List;
 
 public interface OrderService
 {
-    public List<OrderDto> findAll();
+    List<OrderDto> findAll();
 
-    public OrderDto findById(int theId);
+    OrderDto findById(int theId);
 
-    public void save(Order order);
+    void save(Order order);
 
-    public void deleteById(int theId);
+    void deleteById(int theId);
 
-    public List<Order> findByCustomerId(int cid);
+    List<Order> findByCustomerId(int cid);
 
-    public void addOrder(Customer customer, Product product);
+    void addOrder(Customer customer, Product product);
 
     void deleteOrder(Customer customer, Product product);
 
     void deleteProduct(Customer customer, Product product);
 
-    public OrderDto entityToDto(Order order);
+    OrderDto entityToDto(Order order);
 
-    public Order dtoToEntity(OrderDto orderDto);
+    Order dtoToEntity(OrderDto orderDto);
 }

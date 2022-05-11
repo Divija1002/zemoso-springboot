@@ -7,8 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.logging.Logger;
+
 public class CustomUserDetailsService implements UserDetailsService
 {
+    private static Logger logger=Logger.getLogger(String.valueOf(CustomUserDetails.class));
+
     @Autowired
     private UserService userService;
 
@@ -16,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         User user = userService.findByUsername(username);
-        System.out.println(user);
+        logger.info(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

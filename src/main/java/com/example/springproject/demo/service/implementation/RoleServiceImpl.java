@@ -64,13 +64,11 @@ public class RoleServiceImpl implements RoleService
 
     @Override
     public RoleDto entityToDto(Role role) {
-        RoleDto roleDto=modelMapper.map(role,RoleDto.class);
-        return roleDto;
+        return modelMapper.map(role,RoleDto.class);
     }
 
     @Override
     public Role dtoToEntity(RoleDto roleDto) {
-        Role role=modelMapper.map(roleDto,Role.class);
-        return role;
+        return modelMapper.map(roleDto,Role.class);
     }
 }

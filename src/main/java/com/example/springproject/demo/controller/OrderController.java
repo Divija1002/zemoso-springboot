@@ -40,16 +40,14 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         List<Order> orderList=orderService.findByCustomerId(customerDto.getId());
         double totalCost=0;
         for(Order tempOrder:orderList)
         {
             totalCost=totalCost+((tempOrder.getProductId().getPrice())*(tempOrder.getQuantity()));
         }
-        totalCost=Math.round(totalCost*100)/100;
+        totalCost=Math.round(totalCost*100)/100.0;
         model.addAttribute("cart",orderList);
         model.addAttribute("total",totalCost);
         return "shopping-cart";
@@ -60,9 +58,7 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         Customer customer=customerService.dtoToEntity(customerDto);
         ProductDto productDto=productService.findById(id);
         Product product=productService.dtoToEntity(productDto);
@@ -76,9 +72,7 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         Customer customer=customerService.dtoToEntity(customerDto);
         ProductDto productDto=productService.findById(id);
         Product product=productService.dtoToEntity(productDto);
@@ -91,9 +85,7 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         Customer customer=customerService.dtoToEntity(customerDto);
         ProductDto productDto=productService.findById(id);
         Product product=productService.dtoToEntity(productDto);
@@ -106,9 +98,7 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         Customer customer=customerService.dtoToEntity(customerDto);
         ProductDto productDto=productService.findById(id);
         Product product=productService.dtoToEntity(productDto);
@@ -121,11 +111,7 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
-        Customer customer=customerService.dtoToEntity(customerDto);
-        //List<Order> orderList=orderService.findByCustomerId(customerDto.getId());
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         List<Order> orderList=orderService.findByCustomerId(customerDto.getId());
         model.addAttribute("order",orderList);
         return "checkout";
@@ -136,10 +122,7 @@ public class OrderController
     {
         String username= userDetails.getUsername();
         User user=userService.findByUsername(username);
-        UserDto userDto=new UserDto();
-        userDto=userService.entityToDto(user);
-        CustomerDto customerDto=customerService.findCustomerByUserid(userDto.getId());
-        Customer customer=customerService.dtoToEntity(customerDto);
+        CustomerDto customerDto=customerService.findCustomerByUserid(user.getId());
         List<Order> orderList=orderService.findByCustomerId(customerDto.getId());
         for(Order tempOrder:orderList)
         {

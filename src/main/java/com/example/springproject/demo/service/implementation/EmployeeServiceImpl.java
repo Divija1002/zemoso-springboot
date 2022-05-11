@@ -50,8 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService
         {
             throw new RuntimeException("employee not found");
         }
-        EmployeeDto employeeDto=entityToDto(employee);
-        return employeeDto;
+        return entityToDto(employee);
     }
 
     @Override
@@ -68,8 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService
     @Override
     public EmployeeDto findEmployeeByUserid(int id) {
         Employee employee=employeeRepository.findByUserid(id);
-        EmployeeDto employeeDto=entityToDto(employee);
-        return employeeDto;
+        return entityToDto(employee);
     }
 
     @Override
@@ -86,7 +84,6 @@ public class EmployeeServiceImpl implements EmployeeService
 
     @Override
     public Employee dtoToEntity(EmployeeDto employeeDto) {
-        Employee employee=modelMapper.map(employeeDto,Employee.class);
-        return employee;
+        return modelMapper.map(employeeDto,Employee.class);
     }
 }

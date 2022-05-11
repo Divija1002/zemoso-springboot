@@ -18,7 +18,6 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException
     {
-        Logger myLogger=Logger.getLogger(SuccessHandler.class.getName());
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 

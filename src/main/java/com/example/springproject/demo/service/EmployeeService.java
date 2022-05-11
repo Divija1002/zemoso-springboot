@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface EmployeeService
 {
-    public List<EmployeeDto> findAll();
+    List<EmployeeDto> findAll();
 
-    public EmployeeDto findById(int theId);
+    EmployeeDto findById(int theId);
 
-    public void save(Employee employee);
+    void save(Employee employee);
 
-    public void deleteById(int theId);
+    void deleteById(int theId);
 
-    public EmployeeDto findEmployeeByUserid(int id);
+    EmployeeDto findEmployeeByUserid(int id);
 
-    public EmployeeDto entityToDto(Employee employee);
+    EmployeeDto entityToDto(Employee employee);
 
-    public Employee dtoToEntity(EmployeeDto employeeDto);
+    Employee dtoToEntity(EmployeeDto employeeDto);
 }

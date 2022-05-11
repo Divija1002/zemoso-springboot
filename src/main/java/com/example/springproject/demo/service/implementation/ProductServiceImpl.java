@@ -47,8 +47,7 @@ public class ProductServiceImpl implements ProductService
         {
             throw new RuntimeException("product not found id: "+theId);
         }
-        ProductDto productDto=entityToDto(theProduct);
-        return productDto;
+        return entityToDto(theProduct);
     }
 
     @Override

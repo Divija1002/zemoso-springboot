@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface CustomerService
 {
-    public List<CustomerDto> findAll();
+    List<CustomerDto> findAll();
 
-    public CustomerDto findById(int theId);
+    CustomerDto findById(int theId);
 
-    public void save(Customer customer);
+    void save(Customer customer);
 
-    public void deleteById(int theId);
+    void deleteById(int theId);
 
-    public CustomerDto findCustomerByUserid(int id);
+    CustomerDto findCustomerByUserid(int id);
 
-    public CustomerDto entityToDto(Customer customer);
+    CustomerDto entityToDto(Customer customer);
 
-    public Customer dtoToEntity(CustomerDto customerDto);
+    Customer dtoToEntity(CustomerDto customerDto);
 }

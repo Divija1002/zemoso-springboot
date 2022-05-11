@@ -47,8 +47,7 @@ public class CategoryServiceImpl implements CategoryService
         {
             throw new RuntimeException("Did not find category with id: "+theId);
         }
-        CategoryDto categoryDto=entityToDto(category);
-        return categoryDto;
+        return entityToDto(category);
     }
 
     @Override
