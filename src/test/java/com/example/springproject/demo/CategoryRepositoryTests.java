@@ -17,14 +17,14 @@ import java.util.Optional;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CategoryRepositoryTests
+class CategoryRepositoryTests
 {
     @Autowired
     private CategoryRepository categoryRepository;
 
     @Test
     @Order(1)
-    public void saveCategoryTest()
+    void saveCategoryTest()
     {
         Category category=new Category("meat");
         categoryRepository.save(category);
@@ -33,7 +33,7 @@ public class CategoryRepositoryTests
 
     @Test
     @Order(2)
-    public void getCategoryTest()
+    void getCategoryTest()
     {
         Category category=categoryRepository.findById(1).get();
         Assertions.assertThat(category.getId()).isEqualTo(1);
@@ -41,7 +41,7 @@ public class CategoryRepositoryTests
 
     @Test
     @Order(3)
-    public void getListOfCategoryTest()
+    void getListOfCategoryTest()
     {
         List<Category> categoryList=categoryRepository.findAll();
         Assertions.assertThat(categoryList.size()).isGreaterThan(0);
@@ -49,7 +49,7 @@ public class CategoryRepositoryTests
 
     @Test
     @Order(4)
-    public void updateCategoryTest()
+    void updateCategoryTest()
     {
         Category category=categoryRepository.findById(1).get();
         category.setCategoryName("pulses");
@@ -59,7 +59,7 @@ public class CategoryRepositoryTests
 
     @Test
     @Order(5)
-    public void deleteById()
+    void deleteById()
     {
         categoryRepository.deleteById(1);
         Optional<Category> result=categoryRepository.findById(1);

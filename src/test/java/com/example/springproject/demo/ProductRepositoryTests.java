@@ -19,7 +19,7 @@ import java.util.Optional;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ProductRepositoryTests
+class ProductRepositoryTests
 {
     @Autowired
     private ProductRepository productRepository;
@@ -29,7 +29,7 @@ public class ProductRepositoryTests
 
     @Test
     @Order(1)
-    public void saveProductTest()
+    void saveProductTest()
     {
         Category category=new Category("meat");
         categoryRepository.save(category);
@@ -44,7 +44,7 @@ public class ProductRepositoryTests
 
     @Test
     @Order(2)
-    public void getProductTest()
+    void getProductTest()
     {
         Product product=productRepository.findById(1).get();
         Assertions.assertThat(product.getId()).isEqualTo(1);
@@ -52,7 +52,7 @@ public class ProductRepositoryTests
 
     @Test
     @Order(3)
-    public void getListOfProductTest()
+    void getListOfProductTest()
     {
         List<Product> productList=productRepository.findAll();
         Assertions.assertThat(productList.size()).isGreaterThan(0);
@@ -60,7 +60,7 @@ public class ProductRepositoryTests
 
     @Test
     @Order(4)
-    public void updateProductTest()
+    void updateProductTest()
     {
         Product product=productRepository.findById(1).get();
         product.setName("fish");
@@ -70,7 +70,7 @@ public class ProductRepositoryTests
 
     @Test
     @Order(5)
-    public void deleteProductTest()
+    void deleteProductTest()
     {
         productRepository.deleteById(1);
         Optional<Product> result=productRepository.findById(1);

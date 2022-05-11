@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,7 +19,7 @@ public class CategoryController
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String listCategory(Model model)
     {
         List<CategoryDto> categoryList=categoryService.findAll();
@@ -29,7 +27,7 @@ public class CategoryController
         return "category/category-list";
     }
 
-    @RequestMapping("/add")
+    @GetMapping("/add")
     public String addCategory(Model model)
     {
         Category category=new Category();
@@ -37,7 +35,7 @@ public class CategoryController
         return "category/category-form";
     }
 
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public String saveCategory(@Valid @ModelAttribute("category") Category category, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
@@ -46,7 +44,7 @@ public class CategoryController
         return "redirect:/admin/category/list";
     }
 
-    @RequestMapping("/update")
+    @GetMapping("/update")
     public String updateCategory(@RequestParam("cid") int theId,Model model)
     {
         CategoryDto theCategory=categoryService.findById(theId);
@@ -54,7 +52,7 @@ public class CategoryController
         return "category/category-form";
     }
 
-    @RequestMapping("/delete")
+    @GetMapping("/delete")
     public String deleteCategory(@RequestParam("cid") int theId)
     {
         categoryService.deleteById(theId);

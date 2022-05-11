@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -35,7 +32,7 @@ public class OrderController
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("/cart")
+    @GetMapping("/cart")
     public String viewCart(@AuthenticationPrincipal CustomUserDetails userDetails, Model model)
     {
         String username= userDetails.getUsername();
@@ -53,7 +50,7 @@ public class OrderController
         return "shopping-cart";
     }
 
-    @RequestMapping("/add/{id}")
+    @GetMapping("/add/{id}")
     public String addToCart(@PathVariable("id") int id,@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         String username= userDetails.getUsername();
@@ -67,7 +64,7 @@ public class OrderController
         return "redirect:/user/products/"+cid;
     }
 
-    @RequestMapping("/update/{id}")
+    @GetMapping("/update/{id}")
     public String updateCart(@PathVariable("id") int id,@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         String username= userDetails.getUsername();
@@ -80,7 +77,7 @@ public class OrderController
         return "redirect:/order/cart";
     }
 
-    @RequestMapping("/update/remove/{id}")
+    @GetMapping("/update/remove/{id}")
     public String deleteProduct(@PathVariable("id") int id,@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         String username= userDetails.getUsername();
@@ -93,7 +90,7 @@ public class OrderController
         return "redirect:/order/cart";
     }
 
-    @RequestMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id,@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         String username= userDetails.getUsername();
@@ -106,7 +103,7 @@ public class OrderController
         return "redirect:/order/cart";
     }
 
-    @RequestMapping("/checkout")
+    @GetMapping("/checkout")
     public String checkout(@AuthenticationPrincipal CustomUserDetails userDetails,Model model)
     {
         String username= userDetails.getUsername();
@@ -117,7 +114,7 @@ public class OrderController
         return "checkout";
     }
 
-    @RequestMapping("/confirm")
+    @GetMapping("/confirm")
     public String deleteOrders(@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         String username= userDetails.getUsername();

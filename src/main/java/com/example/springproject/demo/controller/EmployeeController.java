@@ -52,7 +52,7 @@ public class EmployeeController
         return "employee-register";
     }
 
-    @RequestMapping("/save-employee")
+    @PostMapping("/save-employee")
     public String saveCustomerRegistration(@ModelAttribute("user") User user, @Valid@ModelAttribute("employee") Employee employee, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())

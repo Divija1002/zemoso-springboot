@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,7 +23,7 @@ public class ProductController
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String listProduct(Model model)
     {
         List<ProductDto> productList=productService.findAll();
@@ -33,7 +31,7 @@ public class ProductController
         return "product/product-list";
     }
 
-    @RequestMapping("/add")
+    @GetMapping("/add")
     public String addProduct(Model model)
     {
         Product product=new Product();
@@ -42,7 +40,7 @@ public class ProductController
         return "product/product-form";
     }
 
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public String saveProduct(@Valid @ModelAttribute("product") Product product,BindingResult bindingResult,Model model)
     {
         if(bindingResult.hasErrors())
@@ -54,7 +52,7 @@ public class ProductController
         return "redirect:/admin/product/list";
     }
 
-    @RequestMapping("/update")
+    @GetMapping("/update")
     public String updateProduct(@RequestParam("pid") int theId,Model model)
     {
         ProductDto productdto=productService.findById(theId);
@@ -64,7 +62,7 @@ public class ProductController
         return "product/product-form";
     }
 
-    @RequestMapping("/delete")
+    @GetMapping("/delete")
     public String deleteProduct(@RequestParam("pid") int theId)
     {
         productService.deleteById(theId);

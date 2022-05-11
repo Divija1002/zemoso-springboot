@@ -63,7 +63,7 @@ public class LoginController
         return "customer-details";
     }
 
-    @RequestMapping("/save-user")
+    @PostMapping("/save-user")
     public String saveCustomerRegistration(@ModelAttribute("user") User user, @Valid@ModelAttribute("customer") Customer customer, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())

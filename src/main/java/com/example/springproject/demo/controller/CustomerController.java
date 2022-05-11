@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,7 +35,7 @@ public class CustomerController
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/home")
+    @GetMapping("/home")
     public String listCategory(Model model)
     {
         List<CategoryDto> categoryList=categoryService.findAll();
@@ -42,7 +43,7 @@ public class CustomerController
         return "user";
     }
 
-    @RequestMapping("/products")
+    @GetMapping("/products")
     public String shopProducts(Model model,@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         model.addAttribute("product",productService.findAll());
@@ -54,7 +55,7 @@ public class CustomerController
         return "shop-list";
     }
 
-    @RequestMapping("/products/{cid}")
+    @GetMapping("/products/{cid}")
     public String shopProductsByCategory(Model model, @PathVariable int cid,@AuthenticationPrincipal CustomUserDetails userDetails)
     {
         model.addAttribute("product",productService.findByCid(cid));
@@ -66,7 +67,7 @@ public class CustomerController
         return "shop-list";
     }
 
-    @RequestMapping("/profile")
+    @GetMapping("/profile")
     public String  viewProfile(@AuthenticationPrincipal CustomUserDetails userDetails, Model model)
     {
         String username= userDetails.getUsername();
