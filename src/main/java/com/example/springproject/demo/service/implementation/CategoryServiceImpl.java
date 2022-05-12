@@ -51,7 +51,15 @@ public class CategoryServiceImpl implements CategoryService
     }
 
     @Override
-    public void save(Category theCategory) {
+    public void save(Category theCategory)
+    {
+        String categoryName= theCategory.getCategoryName();
+        List<Category> categoryList=categoryRepository.findAll();
+        for(Category tempCategory:categoryList)
+        {
+            if (tempCategory.getCategoryName().toLowerCase().equals(categoryName.toLowerCase()))
+                throw new RuntimeException("category already present");
+        }
         categoryRepository.save(theCategory);
     }
 

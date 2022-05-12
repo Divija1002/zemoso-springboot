@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/admin/product")
 public class ProductController
 {
+    Logger logger=Logger.getLogger(String.valueOf(ProductController.class));
     @Autowired
     private ProductService productService;
 
@@ -48,8 +50,16 @@ public class ProductController
             model.addAttribute("category",categoryService.findAll());
             return "product/product-form";
         }
-        productService.save(product);
-        return "redirect:/admin/product/list";
+        try {
+            productService.save(product);
+            return "redirect:/admin/product/list";
+        }
+        catch (Exception e)
+        {
+            logger.info(String.valueOf(e));
+            model.addAttribute("category",categoryService.findAll());
+            return "product/product-form";
+        }
     }
 
     @GetMapping("/update")

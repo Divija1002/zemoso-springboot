@@ -64,6 +64,15 @@ public class ProductServiceImpl implements ProductService
 
     @Override
     public void save(Product theProduct) {
+        String productName= theProduct.getName();
+        List<Product> productList=productRepository.findAll();
+        for (Product tempProduct:productList)
+        {
+            if(tempProduct.getName().equals(productName.toLowerCase()))
+            {
+                throw new RuntimeException("Product already exists");
+            }
+        }
         productRepository.save(theProduct);
     }
 

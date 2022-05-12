@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("admin/category")
 public class CategoryController
 {
+    Logger logger=Logger.getLogger(CategoryController.class.getName());
     @Autowired
     private CategoryService categoryService;
 
@@ -40,8 +42,14 @@ public class CategoryController
     {
         if(bindingResult.hasErrors())
             return "category/category-form";
-        categoryService.save(category);
-        return "redirect:/admin/category/list";
+        try {
+
+            categoryService.save(category);
+            return "redirect:/admin/category/list";
+        } catch (Exception e) {
+            logger.info(String.valueOf(e));
+            return "category/category-form";
+        }
     }
 
     @GetMapping("/update")
