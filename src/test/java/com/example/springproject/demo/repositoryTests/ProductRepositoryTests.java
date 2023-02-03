@@ -1,4 +1,4 @@
-package com.example.springproject.demo;
+package com.example.springproject.demo.repositoryTests;
 
 import com.example.springproject.demo.entity.Category;
 import com.example.springproject.demo.entity.Product;
