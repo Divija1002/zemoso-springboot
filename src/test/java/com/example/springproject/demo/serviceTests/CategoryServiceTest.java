@@ -66,6 +66,13 @@ class CategoryServiceTest {
     }
 
     @Test
+    void findByIdtestFail(){
+        assertThrows(RuntimeException.class,()->{
+            categoryService.findById(3);
+        });
+    }
+
+    @Test
     void saveTest(){
         categoryService.save(category1);
         verify(categoryRepository,times(1)).findAll();
