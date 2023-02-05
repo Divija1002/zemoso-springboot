@@ -1,8 +1,6 @@
 package com.example.springproject.demo.serviceTests;
 
-import com.example.springproject.demo.dto.CategoryDto;
 import com.example.springproject.demo.dto.CustomerDto;
-import com.example.springproject.demo.entity.Category;
 import com.example.springproject.demo.entity.Customer;
 import com.example.springproject.demo.entity.Role;
 import com.example.springproject.demo.entity.User;
@@ -17,13 +15,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceTest {
@@ -94,7 +90,41 @@ public class CustomerServiceTest {
         assertThat(customerList.get(1).getEmail()).isEqualTo("test2@gmail.com");
     }
 
+    @Test
+    void findByIdtest(){
+        when(customerRepository.findById(1)).thenReturn(Optional.of(customer1));
+        CustomerDto categoryDto=customerService.findById(1);
+        assertThat(categoryDto.getEmail()).isEqualTo("test1@gmail.com");
 
+        when(customerRepository.findById(2)).thenReturn(Optional.of(customer2));
+        CustomerDto categoryDto1=customerService.findById(2);
+        assertThat(categoryDto1.getEmail()).isEqualTo("test2@gmail.com");
 
+    }
+
+    @Test
+    void findByIdtestFail(){
+        assertThrows(RuntimeException.class,()->{
+            customerService.findById(3);
+        });
+    }
+
+    @Test
+    void saveTest(){
+        customerService.save(customer1);
+        verify(customerRepository,times(1)).save(customer1);
+    }
+
+    @Test
+    void deleteById(){
+        customerService.deleteById(1);
+        verify(customerRepository,times(1)).deleteById(1);
+    }
+    @Test
+    void findCustomerByUseridTest(){
+        when(customerRepository.findByUserid(1)).thenReturn(customer1);
+        CustomerDto customer=customerService.findCustomerByUserid(1);
+        assertThat(customer.getFirstName()).isEqualTo("test1");
+    }
 
 }
