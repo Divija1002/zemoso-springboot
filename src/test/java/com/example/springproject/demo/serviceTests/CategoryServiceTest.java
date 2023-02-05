@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -63,6 +62,13 @@ class CategoryServiceTest {
         CategoryDto categoryDto1=categoryService.findById(2);
         assertThat(categoryDto1.getCategoryName()).isEqualTo("vegetables");
 
+    }
+
+    @Test
+    void findByIdtestFail(){
+        assertThrows(RuntimeException.class,()->{
+            categoryService.findById(3);
+        });
     }
 
     @Test
