@@ -2,6 +2,8 @@ package com.example.springproject.demo.controllerTests;
 
 import com.example.springproject.demo.config.WebSecurityConfig;
 import com.example.springproject.demo.controller.LoginController;
+import com.example.springproject.demo.entity.Customer;
+import com.example.springproject.demo.entity.User;
 import com.example.springproject.demo.handler.SuccessHandler;
 import com.example.springproject.demo.service.CustomerService;
 import com.example.springproject.demo.service.RoleService;
@@ -17,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.sql.DataSource;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(LoginController.class)
 @ActiveProfiles("test")
@@ -52,6 +54,25 @@ public class LoginControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("access-denied"));
     }
+
+    @Test
+    void showRegistrationFormTest() throws Exception {
+        User user=new User();
+        this.mockMvc
+                .perform(get("/register"))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("user",user))
+                .andExpect(view().name("signup"));
+    }
+
+//    @Test
+//    void processRegisterTest() throws Exception {
+//        this.mockMvc
+//                .perform(post("/process_register"))
+//                .andExpect(status().isOk())
+//                .andExpect(model().attribute("customer",new Customer()))
+//                .andExpect(view().name("customer-details"));
+//    }
 
 
 
