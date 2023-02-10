@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.HashSet;
@@ -24,6 +25,7 @@ import java.util.Set;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class RoleRepositoryTests {
 
     @Autowired
@@ -38,7 +40,7 @@ public class RoleRepositoryTests {
         Role role=new Role();
         role.setName("ROLE_CUSTOMER");
         roleRepository.save(role);
-        Assertions.assertThat(role.getId()).isPositive();
+        Assertions.assertThat(role.getId()).isEqualTo(1);
     }
 
     @Test
@@ -54,7 +56,7 @@ public class RoleRepositoryTests {
     void getListOfRoleTest()
     {
         List<Role> roleList=roleRepository.findAll();
-        Assertions.assertThat(roleList.size()).isPositive();
+        Assertions.assertThat(roleList.size()).isEqualTo(1);
     }
 
     @Test
