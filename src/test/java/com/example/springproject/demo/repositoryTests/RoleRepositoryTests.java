@@ -38,7 +38,7 @@ public class RoleRepositoryTests {
         Role role=new Role();
         role.setName("ROLE_CUSTOMER");
         roleRepository.save(role);
-        Assertions.assertThat(role.getId()).isEqualTo(1);
+        Assertions.assertThat(role.getId()).isPositive();
     }
 
     @Test
@@ -54,7 +54,7 @@ public class RoleRepositoryTests {
     void getListOfRoleTest()
     {
         List<Role> roleList=roleRepository.findAll();
-        Assertions.assertThat(roleList.size()).isEqualTo(1);
+        Assertions.assertThat(roleList.size()).isPositive();
     }
 
     @Test

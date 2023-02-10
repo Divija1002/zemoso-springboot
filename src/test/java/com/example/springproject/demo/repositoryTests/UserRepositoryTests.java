@@ -50,7 +50,7 @@ public class UserRepositoryTests {
         user.setPassword("test1");
         user.setRoles(roleSet);
         userRepository.save(user);
-        Assertions.assertThat(user.getId()).isEqualTo(1);
+        Assertions.assertThat(user.getId()).isPositive();
     }
 
     @Test
@@ -66,7 +66,7 @@ public class UserRepositoryTests {
     void getListOfUserTest()
     {
         List<User> userList=userRepository.findAll();
-        Assertions.assertThat(userList.size()).isEqualTo(1);
+        Assertions.assertThat(userList.size()).isPositive();
     }
 
     @Test

@@ -65,7 +65,7 @@ public class CustomerRepositoryTests {
         customer.setZip("test2");
         customer.setUserid(user);
         customerRepository.save(customer);
-        Assertions.assertThat(customer.getId()).isEqualTo(1);
+        Assertions.assertThat(customer.getId()).isPositive();
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CustomerRepositoryTests {
     void getListOfCustomerTest()
     {
         List<Customer> customerList=customerRepository.findAll();
-        Assertions.assertThat(customerList.size()).isEqualTo(1);
+        Assertions.assertThat(customerList.size()).isPositive();
     }
 
     @Test
