@@ -14,15 +14,19 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @DataJpaTest
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ActiveProfiles("test")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 class ProductRepositoryTests
 {
     @Autowired
@@ -85,5 +89,21 @@ class ProductRepositoryTests
             product=result.get();
         }
         Assertions.assertThat(product).isNull();
+    }
+
+    @Test
+    @Order(6)
+    void findByCidTest(){
+        List<Product> productList=productRepository.findByCid(1);
+        Assertions.assertThat(productList.size()).isEqualTo(1);
+        assertThat(productList.get(0).getName()).isEqualTo("chicken");
+        assertThat(productList.get(0).getCategory().getCategoryName()).isEqualTo("meat");
+    }
+
+    @Test
+    @Order(6)
+    void findCategoryByIdTest(){
+        int categoryId=productRepository.findCategoryById(1);
+        assertThat(categoryId).isEqualTo(1);
     }
 }
